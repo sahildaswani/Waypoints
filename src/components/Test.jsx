@@ -1,5 +1,5 @@
 import useWaypointApi from "../hooks/useWaypointApi";
-
+import Autocomplete from "./Autocomplete";
 const Test = () => {
 	const { data, isLoading, isError, fetchData, reset } = useWaypointApi();
 
@@ -32,6 +32,8 @@ const Test = () => {
 			{data?.status === "failure" && <p>{data.error}</p>}
 
 			{data?.status === "success" && <p>{data.total_distance}</p>}
+
+			<Autocomplete />
 		</div>
 	);
 };
