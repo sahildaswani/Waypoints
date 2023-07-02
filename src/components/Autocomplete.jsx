@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import MUIAutocomplete from "@mui/material/Autocomplete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -25,9 +25,8 @@ function loadScript(src, position, id) {
 
 const autocompleteService = { current: null };
 
-export default function GoogleMaps() {
+const Autocomplete = ({ inputValue, setInputValue, label, clear, setClear }) => {
 	const [value, setValue] = useState(null);
-	const [inputValue, setInputValue] = useState("");
 	const [options, setOptions] = useState([]);
 	const loaded = useRef(false);
 
@@ -61,6 +60,12 @@ export default function GoogleMaps() {
 			return undefined;
 		}
 
+		if (clear) {
+			setValue(null);
+			setOptions([]);
+			setClear(false);
+		}
+
 		if (inputValue === "") {
 			setOptions(value ? [value] : []);
 			return undefined;
@@ -85,10 +90,10 @@ export default function GoogleMaps() {
 		return () => {
 			active = false;
 		};
-	}, [value, inputValue, fetch]);
+	}, [value, inputValue, fetch, clear, setInputValue]);
 
 	return (
-		<Autocomplete
+		<MUIAutocomplete
 			id="google-map-demo"
 			sx={{ width: 300 }}
 			size="small"
@@ -107,7 +112,7 @@ export default function GoogleMaps() {
 			onInputChange={(event, newInputValue) => {
 				setInputValue(newInputValue);
 			}}
-			renderInput={(params) => <TextField {...params} label="Add a location" fullWidth />}
+			renderInput={(params) => <TextField {...params} label={label} fullWidth />}
 			renderOption={(props, option) => {
 				const matches = option.structured_formatting.main_text_matched_substrings || [];
 
@@ -142,4 +147,6 @@ export default function GoogleMaps() {
 			}}
 		/>
 	);
-}
+};
+
+export default Autocomplete;
