@@ -4,7 +4,7 @@ const Test = () => {
 	const { data, isLoading, isError, fetchData, reset } = useWaypointApi();
 
 	return (
-		<div>
+		<>
 			<p>Test</p>
 			<button
 				onClick={() => {
@@ -34,7 +34,7 @@ const Test = () => {
 			{data?.status === "success" && <p>{data.total_distance}</p>}
 
 			<Autocomplete />
-		</div>
+		</>
 	);
 };
 

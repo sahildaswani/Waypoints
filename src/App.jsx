@@ -1,10 +1,14 @@
 import Test from "./components/Test";
+import Maps from "./components/Maps/Maps";
 import "./App.css";
 
 const App = () => {
 	return (
 		<>
-			<Test />
+			<Maps />
+			<div id="ui-container">
+				<Test />
+			</div>
 		</>
 	);
 };
