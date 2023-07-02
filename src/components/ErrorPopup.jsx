@@ -4,7 +4,7 @@ import Alert from "@mui/material/Alert";
 const ErrorPopup = ({ open, setOpen, data, isError }) => {
 	return (
 		<Snackbar
-			anchorOrigin={{ vertical: "buttom", horizontal: "center" }}
+			anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
 			open={open}
 			onClose={() => setOpen(false)}
 		>

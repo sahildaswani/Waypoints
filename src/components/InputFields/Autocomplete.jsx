@@ -25,7 +25,7 @@ function loadScript(src, position, id) {
 
 const autocompleteService = { current: null };
 
-const Autocomplete = ({ inputValue, setInputValue, label, clear, setClear }) => {
+const Autocomplete = ({ inputValue, setInputValue, label, clear, setClear, error, setError }) => {
 	const [value, setValue] = useState(null);
 	const [options, setOptions] = useState([]);
 	const loaded = useRef(false);
@@ -90,7 +90,7 @@ const Autocomplete = ({ inputValue, setInputValue, label, clear, setClear }) => 
 		return () => {
 			active = false;
 		};
-	}, [value, inputValue, fetch, clear, setInputValue]);
+	}, [value, inputValue, fetch, clear, setInputValue, setClear]);
 
 	return (
 		<MUIAutocomplete
@@ -110,9 +110,10 @@ const Autocomplete = ({ inputValue, setInputValue, label, clear, setClear }) => 
 				setValue(newValue);
 			}}
 			onInputChange={(event, newInputValue) => {
+				setError(false);
 				setInputValue(newInputValue);
 			}}
-			renderInput={(params) => <TextField {...params} label={label} fullWidth />}
+			renderInput={(params) => <TextField {...params} label={label} fullWidth error={error} />}
 			renderOption={(props, option) => {
 				const matches = option.structured_formatting.main_text_matched_substrings || [];
 
