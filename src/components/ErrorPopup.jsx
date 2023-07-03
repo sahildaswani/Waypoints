@@ -12,7 +12,7 @@ const ErrorPopup = ({ open, setOpen, data, isError }) => {
 				variant="filled"
 				onClose={() => setOpen(false)}
 				severity={isError ? "error" : "warning"}
-				sx={{ width: "100%" }}
+				fullWidth
 			>
 				{isError ? "An error occurred" : data?.error}
 			</Alert>

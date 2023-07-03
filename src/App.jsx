@@ -3,7 +3,6 @@ import InputFields from "./components/InputFields/InputFields";
 import Maps from "./components/Maps/Maps";
 import ErrorPopup from "./components/ErrorPopup";
 import useWaypointApi from "./hooks/useWaypointApi";
-import "./App.css";
 
 const App = () => {
 	const { data, isLoading, isError, fetchData, reset } = useWaypointApi();
