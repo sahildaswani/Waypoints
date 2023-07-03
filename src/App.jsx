@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import InputFields from "./components/InputFields/InputFields";
 import Maps from "./components/Maps/Maps";
-import ErrorPopup from "./components/ErrorPopup";
+import ErrorPopup from "./components/ErrorPopup/ErrorPopup";
 import useWaypointApi from "./hooks/useWaypointApi";
 
 const App = () => {

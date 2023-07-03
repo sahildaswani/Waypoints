@@ -5,13 +5,13 @@ import { GoogleMap, useLoadScript, DirectionsRenderer } from "@react-google-maps
 import CircularProgress from "@mui/material/CircularProgress";
 import { mapDivStyle, mapContainerStyle, loadingDivStyle } from "./Maps.styles";
 
-const libraries = ["places"];
+const script = {
+	googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+	libraries: ["places"],
+};
 
 const Maps = ({ isLoading, data, directions, setDirections }) => {
-	const { isLoaded, loadError } = useLoadScript({
-		googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-		libraries: libraries,
-	});
+	const { isLoaded, loadError } = useLoadScript(script);
 
 	const center = useMemo(() => {
 		if (data?.status === "success") {
