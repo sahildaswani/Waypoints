@@ -33,6 +33,9 @@ const App = () => {
 					setPickupValue={setPickupValue}
 					dropoffValue={dropoffValue}
 					setDropoffValue={setDropoffValue}
+					data={data}
+					isError={isError}
+					isLoading={isLoading}
 					fetchData={fetchData}
 					reset={reset}
 					setDirections={setDirections}

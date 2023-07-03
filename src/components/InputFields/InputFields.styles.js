@@ -10,4 +10,15 @@ const ButtonGroupStyles = {
 	gap: "1rem",
 };
 
-export { InputFieldsPaperStyles, ButtonGroupStyles };
+const InfoItemStyles = {
+	display: "flex",
+	flexDirection: "row",
+	columnGap: "0.5rem",
+	alignItems: "center",
+};
+
+const bold = {
+	fontWeight: "bold",
+};
+
+export { InputFieldsPaperStyles, ButtonGroupStyles, InfoItemStyles, bold };

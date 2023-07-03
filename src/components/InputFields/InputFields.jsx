@@ -1,14 +1,26 @@
 import { useState } from "react";
 import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import RouteIcon from "@mui/icons-material/Route";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Autocomplete from "./Autocomplete";
-import { InputFieldsPaperStyles, ButtonGroupStyles } from "./InputFields.styles";
+import {
+	InputFieldsPaperStyles,
+	ButtonGroupStyles,
+	InfoItemStyles,
+	bold,
+} from "./InputFields.styles";
 
 const InputFields = ({
 	pickupValue,
 	setPickupValue,
 	dropoffValue,
 	setDropoffValue,
+	data,
+	isError,
+	isLoading,
 	fetchData,
 	reset,
 	setDirections,
@@ -64,13 +76,36 @@ const InputFields = ({
 				setError={setDropoffError}
 			/>
 			<div style={ButtonGroupStyles}>
-				<Button variant="contained" onClick={handleSubmit} fullWidth>
-					Submit
+				<Button variant="contained" onClick={handleSubmit} fullWidth disabled={isLoading}>
+					{isLoading ? "Loading..." : isError || data?.status ? "Retry" : "Submit"}
 				</Button>
 				<Button variant="contained" onClick={handleReset} fullWidth>
 					Reset
 				</Button>
 			</div>
+
+			{/* Only render distance and time when request is sucessful */}
+			{data?.status === "success" && (
+				<>
+					<Divider />
+					<div>
+						<div style={InfoItemStyles}>
+							<RouteIcon />
+							<Typography variant="body1" component="p">
+								<span style={bold}>Distance: </span>
+								{data?.total_distance}
+							</Typography>
+						</div>
+						<div style={InfoItemStyles}>
+							<AccessTimeIcon />
+							<Typography variant="body1" component="p">
+								<span style={bold}>Time: </span>
+								{data?.total_time}
+							</Typography>
+						</div>
+					</div>
+				</>
+			)}
 		</Paper>
 	);
 };
